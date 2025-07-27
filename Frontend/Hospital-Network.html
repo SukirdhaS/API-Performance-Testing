@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Insurance API Viewer</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    h1 { color: #444; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f4f4f4; }
+  </style>
+</head>
+<body>
+
+  <h1>🛍️ hospital-cashless-eligibility-checker</h1>
+
+  <!-- Table structure with column headers -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Hospital Name</th>
+        <th>Insurer</th>
+        <th>Cashless</th>
+        <th>Supporting Documents</th>
+      </tr>
+    </thead>
+    <tbody id="hospital-cashless-eligibility-checker-body">
+      <!-- Data rows will be injected here dynamically -->
+    </tbody>
+  </table>
+
+  <script>
+    // Fetch the data from your deployed API (Render)
+    fetch("https://api-performance-testing.onrender.com/networkHospitals")
+      .then(res => res.json()) // Convert the response to JSON
+      .then(data => {
+        // Get a reference to the tbody element in the table
+        const table = document.getElementById("hospital-cashless-eligibility-checker-body");
+
+        // Loop through each object (hospital entry) in the JSON array
+        data.forEach(item => {
+          // 'item' is one object from the array. For example:
+          // {
+          //   "id": 1,
+          //   "hospital": "Apollo",
+          //   "insurer": "ICICI Lombard",
+          //   "cashless": true,
+          //   "Supporting Documents": "Aadhar, PAN"
+          // }
+
+          // Create a new row for this hospital
+          const row = document.createElement("tr");
+
+          // Set the row’s HTML content using template literals
+          row.innerHTML = `
+            <td>${item.id}</td>                          <!-- Displays hospital ID -->
+            <td>${item.hospital}</td>                    <!-- Displays hospital name -->
+            <td>${item.insurer}</td>                     <!-- Displays insurer -->
+            <td>${item.cashless ? "✅" : "❌"}</td>       <!-- Shows checkmark if true -->
+            <td>${item["Supporting Documents"] || "N/A"}</td> <!-- Handles null/undefined -->
+          `;
+
+          // Add this row to the table body
+          table.appendChild(row);
+        });
+      })
+      .catch(err => {
+        // In case of network/API errors
+        console.error("Error fetching data:", err);
+      });
+  </script>
+
+</body>
+</html>
