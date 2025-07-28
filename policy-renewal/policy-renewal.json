@@ -1,0 +1,11 @@
+{
+  "policies": [
+    {
+      "id": 1,
+      "holderName": "John Doe",
+      "policyType": "Life",
+      "renewalDate": "2025-08-15",
+      "status": "active"
+    }
+  ]
+}
