@@ -1,32 +1,39 @@
-[
-  {
-    "hospital": "Apollo Chennai",
-    "insurer": "LIC",
-    "cashless": true,
-    "Supporting Documents": "Y"
-  },
-  {
-    "hospital": "Fortis Bangalore",
-    "insurer": "HDFC",
-    "cashless": false,
-    "Supporting Documents": "Y"
-  }, 
-  {
-    "hospital": "Global Hyderabad",
-    "insurer": "ICICI",
-    "cashless": true,
-    "Supporting Documents": "Y"
-  },
-  {
-    "hospital": "Global Chennai",
-    "insurer": "ICICI",
-    "cashless": false,
-    "Supporting Documents": "Y"
-  },
-  {
-    "hospital": "Global Kochi",
-    "insurer": "HDFC",
-    "cashless": true,
-    "Supporting Documents": "Y"
-  }
-]
+{
+  "networkHospitals": [
+    {
+      "id": 1,
+      "hospital": "Apollo Chennai",
+      "insurer": "LIC",
+      "cashless": true,
+      "Supporting Documents": "Y"
+    },
+    {
+      "id": 2,
+      "hospital": "Fortis Bangalore",
+      "insurer": "HDFC",
+      "cashless": false,
+      "Supporting Documents": "Y"
+    }, 
+    {
+      "id": 3,
+      "hospital": "Global Hyderabad",
+      "insurer": "ICICI",
+      "cashless": true,
+      "Supporting Documents": "Y"
+    },
+    {
+      "id": 4,
+      "hospital": "Global Chennai",
+      "insurer": "ICICI",
+      "cashless": false,
+      "Supporting Documents": "Y"
+    },
+    {
+      "id": 5,
+      "hospital": "Global Kochi",
+      "insurer": "HDFC",
+      "cashless": true,
+      "Supporting Documents": "Y"
+    }
+  ]
+}
