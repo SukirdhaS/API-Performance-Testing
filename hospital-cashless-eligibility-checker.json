@@ -23,13 +23,6 @@
     },
     {
       "id": 4,
-      "hospital": "Global Chennai",
-      "insurer": "ICICI",
-      "cashless": false,
-      "Supporting Documents": "Y"
-    },
-    {
-      "id": 5,
       "hospital": "Global Kochi",
       "insurer": "HDFC",
       "cashless": true,
