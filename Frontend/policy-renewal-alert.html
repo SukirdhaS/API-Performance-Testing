@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="style.css" />
   <meta charset="UTF-8">
-  <title>Insurance API Viewer</title>
+  <title>Policy-Renewal</title>
   <style>
     body { font-family: Arial; padding: 20px; }
     h1 { color: #444; }
@@ -14,31 +14,31 @@
 </head>
 <body>
 
-  <h1>🛍️ hospital-cashless-eligibility-checker</h1>
+  <h1>🛍️ policy-renewal</h1>
 
   <!-- Table structure with column headers -->
   <table>
     <thead>
       <tr>
         <th>ID</th>
-        <th>Hospital Name</th>
-        <th>Insurer</th>
-        <th>Cashless</th>
-        <th>Supporting Documents</th>
+        <th>Policy Holder Name</th>
+        <th>Policy Type</th>
+        <th>Renewal Date</th>
+        <th>Status</th>
       </tr>
     </thead>
-    <tbody id="hospital-cashless-eligibility-checker-body">
+    <tbody id="policy-renewal-alert-body">
       <!-- Data rows will be injected here dynamically -->
     </tbody>
   </table>
 
   <script>
     // Fetch the data from your deployed API (Render)
-    fetch("https://cashless-eligibility-checker.onrender.com/networkHospitals")
+    fetch("https://api-performance-testing-1oqd.onrender.com/policies")
       .then(res => res.json()) // Convert the response to JSON
       .then(data => {
         // Get a reference to the tbody element in the table
-        const table = document.getElementById("hospital-cashless-eligibility-checker-body");
+        const table = document.getElementById("policy-renewal-alert-body");
 
         // Loop through each object (hospital entry) in the JSON array
         data.forEach(item => {
@@ -57,10 +57,10 @@
           // Set the row’s HTML content using template literals
           row.innerHTML = `
             <td>${item.id}</td>                          <!-- Displays hospital ID -->
-            <td>${item.hospital}</td>                    <!-- Displays hospital name -->
-            <td>${item.insurer}</td>                     <!-- Displays insurer -->
-            <td>${item.cashless ? "✅" : "❌"}</td>       <!-- Shows checkmark if true -->
-            <td>${item["Supporting Documents"] || "N/A"}</td> <!-- Handles null/undefined -->
+            <td>${item.holderName}</td>                    <!-- Displays hospital name -->
+            <td>${item.policyType}</td>                     <!-- Displays insurer -->
+            <td>${item.renewalDate ? "✅" : "❌"}</td>       <!-- Shows checkmark if true -->
+            <td>${item.status || "N/A"}</td> <!-- Handles null/undefined -->
           `;
 
           // Add this row to the table body
