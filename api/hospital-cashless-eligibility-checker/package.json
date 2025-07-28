@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
  "scripts": {
-  "start:hospital": "json-server --host 0.0.0.0 --watch hospital-cashless-eligibility-checker.json --port 10000",
-  "start:policy": "json-server --host 0.0.0.0 --watch policy-renewal-alert.json --port 10001"
+  "start": "json-server --host 0.0.0.0 --watch hospital-cashless-eligibility-checker.json --port 10000"
 },
   "dependencies": {
     "json-server": "^0.17.3"
