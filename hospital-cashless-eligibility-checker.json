@@ -1,6 +1,11 @@
+[
   {
-     "networkHospitals": 
-    { "hospital": "Global Hyderabad", "insurer": "LIC", "cashless": true, "Supporting Documents": "Y" }, "id": "001"
+    "network-hospitals": {
+    "hospital": "Apollo Chennai",
+    "insurer": "LIC",
+    "cashless": true,
+    "Supporting Documents": "Y"
+    },
+    "id": "001"
   }
-  
-
+]
