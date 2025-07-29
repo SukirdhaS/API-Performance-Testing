@@ -65,7 +65,7 @@
       const hospital = document.getElementById("hospital").value.trim();
       const insurer = document.getElementById("insurer").value.trim();
 
-      fetch(`https://cashless-eligibility-checker.onrender.com/networkHospitals?hospital=${hospital}&insurer=${insurer}`) 
+      fetch(`http://localhost:3001/api/eligibility?hospital=${hospital}&insurer=${insurer}`)
         .then(res => res.json())
         .then(data => {
           const resultDiv = document.getElementById("resultMsg");
@@ -86,6 +86,7 @@
           console.error(err);
         });
     });
+    
   </script>
 
 </body>

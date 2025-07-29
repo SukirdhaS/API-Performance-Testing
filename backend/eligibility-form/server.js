@@ -43,10 +43,39 @@ app.get("/insurer", (req, res) => {
 
 app.get("/api/eligibility", (req, res) => {
   const { hospital, insurer } = req.query;
-  // Simulate eligibility rule
-  const eligible = hospital && insurer && hospital.startsWith("A");
-  res.json({ eligible });
+
+  if (!hospital || !insurer) {
+    return res.status(400).json({ message: "Missing hospital or insurer" });
+  }
+
+  const query = `
+    SELECT cashless 
+    FROM hospitals 
+    WHERE LOWER(hospital_name) = LOWER(?) 
+      AND LOWER(insurer_name) = LOWER(?) 
+    LIMIT 1
+  `;
+
+  db.query(query, [hospital, insurer], (err, results) => {
+    if (err) {
+      console.error("DB Error:", err);
+      return res.status(500).json({ message: "Database error" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ eligible: false, message: "No matching hospital/insurer found" });
+    }
+
+    const record = results[0];
+    res.json({
+      eligible: record.cashless === 1,
+      message: record.cashless === 1
+        ? "✅ Eligible for Cashless Treatment!"
+        : "❌ Not Eligible for Cashless."
+    });
+  });
 });
+
 
 //port
 app.listen(3001, () => {
