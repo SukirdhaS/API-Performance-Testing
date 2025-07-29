@@ -1,0 +1,48 @@
+name: Run Postman API Tests_Insurance
+
+on:
+  push:
+
+jobs:
+  automated-api-tests:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Install newman HTML reporting
+        run: npm install -g newman-reporter-htmlextra
+      
+      - name: Run Newman Collection
+        run: |
+          newman run Insurance.postman_collection.json `
+            -e QA.postman_environment.json `
+            -g workspace.postman_globals.json `
+            -r htmlextra `
+            --reporter-htmlextra-export newman1/Test_Results.htmlextra
+    
+          # After the "Run Newman Collection" step
+
+      - name: Verify report generation
+        run: |
+          Get-ChildItem -Recurse postman-tests # For Windows runner
+
+# After the "Run Newman Collection" step
+
+      - name: Upload Newman Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: Newman_API_Report
+          path: newman1/Test_Results.htmlextra
+
+        
+        
