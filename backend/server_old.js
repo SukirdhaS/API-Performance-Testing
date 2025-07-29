@@ -80,6 +80,7 @@ app.get("/api/eligibility", (req, res) => {
 
 
 //port
+const port = process.env.port || 3001;
 app.listen(3001, () => {
   console.log("Server running on port 3001");
 });

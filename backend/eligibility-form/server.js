@@ -38,6 +38,7 @@ app.get("/insurer", (req, res) => {
   });
 });
 
+
 // API endpoint to fetch check eligibility
 
 app.get("/api/eligibility", (req, res) => {
