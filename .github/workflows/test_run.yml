@@ -23,12 +23,13 @@ jobs:
         run: npm install -g newman-reporter-htmlextra
       
       - name: Run Newman Collection
+        working-directory: ./Testing
         run: |
           newman run Insurance.postman_collection.json `
             -e QA.postman_environment.json `
             -g workspace.postman_globals.json `
             -r htmlextra `
-            --reporter-htmlextra-export newman1/Test_Results.htmlextra
+            --reporter-htmlextra-export Testing/Test_Results.htmlextra
     
           # After the "Run Newman Collection" step
 
@@ -42,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Newman_API_Report
-          path: newman1/Test_Results.htmlextra
+          path: Testing/Test_Results.htmlextra
 
         
         
