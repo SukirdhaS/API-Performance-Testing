@@ -1,0 +1,27 @@
+{
+	"id": "4e9892c9-6fa6-4026-81aa-647eb1727fb7",
+	"values": [
+		{
+			"key": "url",
+			"value": "https://shop2-wqp4.onrender.com",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "url_insurance",
+			"value": "https://api-performance-testing.onrender.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "url_policy_renewal",
+			"value": "https://api-performance-testing-1oqd.onrender.com",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2025-07-29T07:33:26.457Z",
+	"_postman_exported_using": "Postman/11.56.0"
+}

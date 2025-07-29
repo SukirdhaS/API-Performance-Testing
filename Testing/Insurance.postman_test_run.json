@@ -1,0 +1,488 @@
+{
+	"id": "4f1840f3-3347-476f-9108-d2f117ebab29",
+	"name": "Insurance",
+	"timestamp": "2025-07-29T07:29:08.432Z",
+	"collection_id": "8511641-35ea63bc-77ca-49d4-9bd1-34bd0de9da4d",
+	"folder_id": 0,
+	"environment_id": "8511641-9691be1e-ab92-4841-af22-6c0f8b1c4600",
+	"totalPass": 24,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-07-29T07:28:39.225Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "e9aeefb0-1e01-421a-ad25-9cdf5f1d5735",
+			"name": "To create a new resource",
+			"url": "https://api-performance-testing.onrender.com/networkHospitals",
+			"time": 22467,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201. Resource created.": true,
+				"Resource created: Hospital - Delete": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201. Resource created.": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Resource created: Hospital - Delete": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22467
+			],
+			"allTests": [
+				{
+					"Status code is 201. Resource created.": true,
+					"Resource created: Hospital - Delete": true
+				}
+			]
+		},
+		{
+			"id": "09adaf98-d190-4f44-8689-ae46c7b509ea",
+			"name": "To delete the posted resource",
+			"url": "https://api-performance-testing.onrender.com/networkHospitals/5",
+			"time": 204,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				204
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "3557b813-9c8d-43d6-8ee2-40dc3c8b7673",
+			"name": "To ensure the deleted resource does not exist in the response payload",
+			"url": "https://api-performance-testing.onrender.com/networkHospitals/5",
+			"time": 192,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code: 404. Resource not found": true,
+				"The resource 'Delete' is not found": true
+			},
+			"testPassFailCounts": {
+				"Status code: 404. Resource not found": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The resource 'Delete' is not found": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				192
+			],
+			"allTests": [
+				{
+					"Status code: 404. Resource not found": true,
+					"The resource 'Delete' is not found": true
+				}
+			]
+		},
+		{
+			"id": "bb68c5f4-7e18-419d-bd47-7f4bf09aed12",
+			"name": "To get a resource and verify the status code & the response body. Copy",
+			"url": "https://api-performance-testing.onrender.com/networkHospitals",
+			"time": 209,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"The status code is 200": true
+			},
+			"testPassFailCounts": {
+				"The status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				209
+			],
+			"allTests": [
+				{
+					"The status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "7651e223-5129-42f0-a042-aaaef2abb283",
+			"name": "To get a resource and verify the status code & the response body.",
+			"url": "https://api-performance-testing.onrender.com/networkHospitals",
+			"time": 191,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"The status code is 200": true,
+				"The response body contains hospital as expected": true
+			},
+			"testPassFailCounts": {
+				"The status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The response body contains hospital as expected": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				191
+			],
+			"allTests": [
+				{
+					"The status code is 200": true,
+					"The response body contains hospital as expected": true
+				}
+			]
+		},
+		{
+			"id": "0cb5e717-bdb8-4f85-bc57-7a7ee1ae22a4",
+			"name": "To create a resource",
+			"url": "https://api-performance-testing.onrender.com/networkHospitals",
+			"time": 191,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Cauveri Adayar is created": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Cauveri Adayar is created": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				191
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Cauveri Adayar is created": true
+				}
+			]
+		},
+		{
+			"id": "d5913bc7-f11c-477c-89ba-d31120e0e99e",
+			"name": "To update a request",
+			"url": "https://api-performance-testing.onrender.com/networkHospitals/5",
+			"time": 181,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Cauveri Adayar is updated": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Cauveri Adayar is updated": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				181
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Cauveri Adayar is updated": true
+				}
+			]
+		},
+		{
+			"id": "ba901d95-9216-4a8c-86bc-2064d9e65dfb",
+			"name": "To update a request partially",
+			"url": "https://api-performance-testing.onrender.com/networkHospitals/5",
+			"time": 210,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Cauveri Adayar is updated": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Cauveri Adayar is updated": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				210
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Cauveri Adayar is updated": true
+				}
+			]
+		},
+		{
+			"id": "5d964bd8-9971-4afa-8f06-f3a97b909e41",
+			"name": "To verify the allowed actions",
+			"url": "https://api-performance-testing.onrender.com",
+			"time": 475,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204 as expected for deleted item": true,
+				"Access-Control-Allow-Methods header is present": true,
+				"Allowed Methods: GET,HEAD,PUT,PATCH,POST,DELETE": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204 as expected for deleted item": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Access-Control-Allow-Methods header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Allowed Methods: GET,HEAD,PUT,PATCH,POST,DELETE": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				475
+			],
+			"allTests": [
+				{
+					"Status code is 204 as expected for deleted item": true,
+					"Access-Control-Allow-Methods header is present": true,
+					"Allowed Methods: GET,HEAD,PUT,PATCH,POST,DELETE": true
+				}
+			]
+		},
+		{
+			"id": "418d450c-9791-4e18-aaf5-7c3698b7c53f",
+			"name": "To fetch a resource",
+			"url": "https://api-performance-testing-1oqd.onrender.com/policies",
+			"time": 234,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				234
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body matches string": true
+				}
+			]
+		},
+		{
+			"id": "8cdf90fa-138b-4aa9-8d31-c601688d7aa9",
+			"name": "To create a resource",
+			"url": "https://api-performance-testing-1oqd.onrender.com/policies",
+			"time": 230,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				230
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Body matches string": true
+				}
+			]
+		},
+		{
+			"id": "c404e0de-4681-418e-8dfa-812ce0fd89bd",
+			"name": "To update a resource",
+			"url": "https://api-performance-testing-1oqd.onrender.com/policies/2",
+			"time": 202,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				202
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body matches string": true
+				}
+			]
+		},
+		{
+			"id": "471ef57a-d103-45b3-95a4-9c1494397ce5",
+			"name": "Partial update",
+			"url": "https://api-performance-testing-1oqd.onrender.com/policies/2",
+			"time": 182,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				182
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body matches string": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 25168,
+	"collection": {
+		"requests": [
+			{
+				"id": "e9aeefb0-1e01-421a-ad25-9cdf5f1d5735",
+				"method": "POST"
+			},
+			{
+				"id": "09adaf98-d190-4f44-8689-ae46c7b509ea",
+				"method": "DELETE"
+			},
+			{
+				"id": "3557b813-9c8d-43d6-8ee2-40dc3c8b7673",
+				"method": "GET"
+			},
+			{
+				"id": "bb68c5f4-7e18-419d-bd47-7f4bf09aed12",
+				"method": "HEAD"
+			},
+			{
+				"id": "7651e223-5129-42f0-a042-aaaef2abb283",
+				"method": "GET"
+			},
+			{
+				"id": "0cb5e717-bdb8-4f85-bc57-7a7ee1ae22a4",
+				"method": "POST"
+			},
+			{
+				"id": "d5913bc7-f11c-477c-89ba-d31120e0e99e",
+				"method": "PUT"
+			},
+			{
+				"id": "ba901d95-9216-4a8c-86bc-2064d9e65dfb",
+				"method": "PATCH"
+			},
+			{
+				"id": "5d964bd8-9971-4afa-8f06-f3a97b909e41",
+				"method": "OPTIONS"
+			},
+			{
+				"id": "418d450c-9791-4e18-aaf5-7c3698b7c53f",
+				"method": "GET"
+			},
+			{
+				"id": "8cdf90fa-138b-4aa9-8d31-c601688d7aa9",
+				"method": "POST"
+			},
+			{
+				"id": "c404e0de-4681-418e-8dfa-812ce0fd89bd",
+				"method": "PUT"
+			},
+			{
+				"id": "471ef57a-d103-45b3-95a4-9c1494397ce5",
+				"method": "PATCH"
+			}
+		]
+	}
+}

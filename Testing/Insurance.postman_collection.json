@@ -1,0 +1,455 @@
+{
+	"info": {
+		"_postman_id": "35ea63bc-77ca-49d4-9bd1-34bd0de9da4d",
+		"name": "Insurance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "8511641"
+	},
+	"item": [
+		{
+			"name": "Hospital Cashless Eligibility Checker",
+			"item": [
+				{
+					"name": "To validate DELETE functionality",
+					"item": [
+						{
+							"name": "To create a new resource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201. Resource created.\", function () \r",
+											"{\r",
+											"pm.response.to.have.status(201);\r",
+											"})\r",
+											"\r",
+											"pm.test(\"Resource created: Hospital - Delete\", function () \r",
+											"{\r",
+											"    pm.expect(pm.response.text()).to.include(\"Hospital - Delete\");\r",
+											"    const response = pm.response.json();\r",
+											"    pm.collectionVariables.set(\"createdHospitalId\", response.id);\r",
+											"})\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \r\n    \"hospital\": \"Hospital - Delete\",\r\n    \"insurer\": \"HDFC\",\r\n    \"cashless\": false,\r\n    \"Supporting Documents\": \"Y\"\r\n  }\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{url_insurance}}/networkHospitals"
+							},
+							"response": []
+						},
+						{
+							"name": "To delete the posted resource",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{url_insurance}}/networkHospitals/{{createdHospitalId}}"
+							},
+							"response": []
+						},
+						{
+							"name": "To ensure the deleted resource does not exist in the response payload",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code: 404. Resource not found\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"})\r",
+											"pm.test(\"The resource 'Delete' is not found\", function () {\r",
+											"    pm.expect(pm.response.text()).not.includes(\"Delete\");\r",
+											"})"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{url_insurance}}/networkHospitals/{{createdHospitalId}}"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "To get a resource and verify the status code & the response body. Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"The status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "HEAD",
+						"header": [],
+						"url": "{{url_insurance}}/networkHospitals"
+					},
+					"response": []
+				},
+				{
+					"name": "To get a resource and verify the status code & the response body.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"The status code is 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"The response body contains hospital as expected\", function (){\r",
+									"    pm.expect(pm.response.text()).to.include(\"hospital\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url_insurance}}/networkHospitals"
+					},
+					"response": []
+				},
+				{
+					"name": "To create a resource",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    const response = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"createdNewHospitalId\", response.id);\r",
+									"   \r",
+									"})\r",
+									"\r",
+									"pm.test(\"Cauveri Adayar is created\", function (){\r",
+									"    pm.expect(pm.response.text()).to.include(\"Cauveri Adayar\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hospital\": \"Cauveri Adayar\",\r\n    \"insurer\": \"HDFC\",\r\n    \"cashless\": false,\r\n    \"Supporting Documents\": \"Y\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url_insurance}}/networkHospitals"
+					},
+					"response": []
+				},
+				{
+					"name": "To update a request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"   \r",
+									"})\r",
+									"\r",
+									"pm.test(\"Cauveri Adayar is updated\", function (){\r",
+									"    pm.expect(pm.response.text()).to.include(\"Cauveri Adayar Updated\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hospital\": \"Cauveri Adayar Updated\",\r\n    \"insurer\": \"HDFC & LIC\",\r\n    \"cashless\": true,\r\n    \"Supporting Documents\": \"N\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url_insurance}}/networkHospitals/{{createdNewHospitalId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "To update a request partially",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"   \r",
+									"})\r",
+									"\r",
+									"pm.test(\"Cauveri Adayar is updated\", function (){\r",
+									"    pm.expect(pm.response.text()).to.include(\"Assistance Available\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"Assistance Available\": \"Yes\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url_insurance}}/networkHospitals/{{createdNewHospitalId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "To verify the allowed actions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204 as expected for deleted item\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"let allowedMethods = pm.response.headers.get(\"Access-Control-Allow-Methods\");\r",
+									"\r",
+									"pm.test(\"Access-Control-Allow-Methods header is present\", function () {\r",
+									"    pm.expect(allowedMethods).to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Allowed Methods: \" + allowedMethods, function () {\r",
+									"    // Dummy test to show the value in results\r",
+									"    pm.expect(true).to.be.true;\r",
+									"});\r",
+									"\r",
+									"console.log(\"Access-Control-Allow-Methods:\", allowedMethods);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"url": "{{url_insurance}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Policy Renewal",
+			"item": [
+				{
+					"name": "To fetch a resource",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"holderName\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url_policy_renewal}}/policies"
+					},
+					"response": []
+				},
+				{
+					"name": "To create a resource",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Joey Matt\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n\r\n    \"holderName\": \"Joey Matt\",\r\n    \"policyType\": \"Term\",\r\n    \"renewalDate\": \"2025-09-15\",\r\n    \"status\": \"active\"\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url_policy_renewal}}/policies"
+					},
+					"response": []
+				},
+				{
+					"name": "To update a resource",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Bing Mathew\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n\r\n    \"holderName\": \"Bing Mathew\",\r\n    \"policyType\": \"Term Insurance\",\r\n    \"renewalDate\": \"2025-09-15\",\r\n    \"status\": \"active\"\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url_policy_renewal}}/policies/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Partial update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Availability\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n\r\n    \"holderName\": \"Bing Mathew\",\r\n    \"policyType\": \"Term Insurance\",\r\n    \"renewalDate\": \"2025-09-15\",\r\n    \"status\": \"active\",\r\n    \"Availability\": \"Yes\"\r\n  }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url_policy_renewal}}/policies/2"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "createdHospitalId",
+			"value": ""
+		},
+		{
+			"key": "createdNewHospitalId",
+			"value": ""
+		},
+		{
+			"key": "idsToDelete",
+			"value": ""
+		},
+		{
+			"key": "idToDelete",
+			"value": ""
+		},
+		{
+			"key": "currentIndex",
+			"value": ""
+		}
+	]
+}
