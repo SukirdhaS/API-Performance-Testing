@@ -23,10 +23,19 @@ jobs:
 
       - name: Run JMeter tests
         run: |
-          jmeter -n -t perf-testing-petstore.jmx -l results.jtl -e -o results/
+          mkdir -p results   # ensure results dir exists
+          jmeter -n -t perf-testing-petstore.jmx -l results/results.jtl -e -o results/html
 
-      - name: Upload Results
-        uses: actions/upload-artifact@v4   # ✅ updated to v4
+      - name: Debug results folder
+        run: |
+          echo "==== Results Folder Structure ===="
+          ls -R results || echo "No results folder found"
+          echo "================================="
+
+      - name: Upload Results (HTML + JTL)
+        uses: actions/upload-artifact@v4
         with:
           name: jmeter-report
-          path: results/
+          path: |
+            results/results.jtl
+            results/html
