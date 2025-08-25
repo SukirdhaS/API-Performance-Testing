@@ -1,0 +1,19 @@
+name: Performance Test
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  run-jmeter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Run JMeter tests
+        run: |
+          jmeter -n -t perf-testing-petstore.jmx -l results.jtl -e -o results/
+
