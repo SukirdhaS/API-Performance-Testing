@@ -1,50 +1,44 @@
-name: Performance Test
+name: Run JMeter Tests
 
 on:
-  workflow_dispatch: {}   # manual trigger only
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
-  run-jmeter:
+  jmeter-test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout main branch (workflow files)
+        uses: actions/checkout@v4
 
-      - name: Set up Java
-        uses: actions/setup-java@v3
+      - name: Checkout master branch (JMX + CSVs)
+        uses: actions/checkout@v4
         with:
-          java-version: '11'
-          distribution: 'temurin'
+          ref: master
+          path: master-repo
 
-      - name: Install JMeter
+      - name: Debug files
         run: |
-          sudo apt-get update
-          sudo apt-get install -y jmeter
+          echo "==== Repo Root ===="
+          ls -R
+          echo "==== Master Repo Folder ===="
+          ls -R master-repo
 
-      - name: Run JMeter tests
+      - name: Run JMeter test
         run: |
-          if [ ! -f perf-testing-petstore.jmx ]; then
-            echo "❌ ERROR: Test plan perf-testing-petstore.jmx not found in repo root"
-            exit 1
-          fi
           mkdir -p results
-          jmeter -n -t perf-testing-petstore.jmx -l results/results.jtl -e -o results/html || {
-            echo "❌ JMeter execution failed"
-            exit 1
-          }
-          echo "✅ JMeter test completed, results generated"
-
-
-      - name: Debug results folder
-        run: |
-          echo "==== Results Folder Structure ===="
-          ls -R results || echo "No results folder found"
-          echo "================================="
+          jmeter -n \
+            -t master-repo/perf-testing-petstore.jmx \
+            -l results/results.jtl \
+            -e -o results/html
 
       - name: Upload Results (HTML + JTL)
         uses: actions/upload-artifact@v4
         with:
-          name: jmeter-report
+          name: jmeter-results
           path: |
             results/results.jtl
             results/html
