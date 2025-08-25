@@ -1,7 +1,6 @@
-name: Run JMeter Tests
+name: JMeter CI
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
@@ -19,6 +18,15 @@ jobs:
         with:
           ref: master
           path: master-repo
+
+      - name: Install JMeter
+        run: |
+          JMETER_VERSION=5.6.3
+          wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
+          tar -xvzf apache-jmeter-${JMETER_VERSION}.tgz
+          sudo mv apache-jmeter-${JMETER_VERSION} /opt/jmeter
+          echo "/opt/jmeter/bin" >> $GITHUB_PATH
+          jmeter -v
 
       - name: Debug files
         run: |
@@ -42,3 +50,4 @@ jobs:
           path: |
             results/results.jtl
             results/html
+
