@@ -1,4 +1,4 @@
-name: performance test run CI/CD
+name: JMeter CI
 
 on:
   push:
@@ -24,3 +24,20 @@ jobs:
           JMETER_VERSION=5.6.3
           wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
           tar -xvzf apache-jmeter-${JMETER_VERSION}.tgz
+          mv apache-jmeter-${JMETER_VERSION} $HOME/jmeter
+          echo "$HOME/jmeter/bin" >> $GITHUB_PATH
+          jmeter -v
+
+      - name: Run JMeter Test
+        run: |
+          mkdir -p results
+          jmeter -n \
+            -t master-repo/perf-testing-petstore.jmx \
+            -l results/results.jtl \
+            -e -o results/html
+
+      - name: Upload JMeter Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: jmeter-results
+          path: results
