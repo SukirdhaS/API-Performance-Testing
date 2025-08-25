@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
+#Run this
       - name: Run JMeter tests
         run: |
           jmeter -n -t perf-testing-petstore.jmx -l results.jtl -e -o results/
