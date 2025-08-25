@@ -1,0 +1,26 @@
+name: performance test run CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  jmeter-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+
+      - name: Checkout master branch (JMX + CSVs)
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          path: master-repo
+
+      - name: Install JMeter
+        run: |
+          JMETER_VERSION=5.6.3
+          wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
+          tar -xvzf apache-jmeter-${JMETER_VERSION}.tgz
