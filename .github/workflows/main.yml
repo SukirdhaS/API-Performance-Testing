@@ -1,4 +1,4 @@
-name: JMeter Test
+name: petstore perf Test
 
 on:
   push:
