@@ -23,8 +23,17 @@ jobs:
 
       - name: Run JMeter tests
         run: |
-          mkdir -p results   # ensure results dir exists
-          jmeter -n -t perf-testing-petstore.jmx -l results/results.jtl -e -o results/html
+          if [ ! -f perf-testing-petstore.jmx ]; then
+            echo "❌ ERROR: Test plan perf-testing-petstore.jmx not found in repo root"
+            exit 1
+          fi
+          mkdir -p results
+          jmeter -n -t perf-testing-petstore.jmx -l results/results.jtl -e -o results/html || {
+            echo "❌ JMeter execution failed"
+            exit 1
+          }
+          echo "✅ JMeter test completed, results generated"
+
 
       - name: Debug results folder
         run: |
