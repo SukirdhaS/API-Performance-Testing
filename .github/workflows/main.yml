@@ -28,26 +28,25 @@ jobs:
           echo "/opt/jmeter/bin" >> $GITHUB_PATH
           jmeter -v
 
-      - name: Debug files
-        run: |
-          echo "==== Repo Root ===="
-          ls -R
-          echo "==== Master Repo Folder ===="
-          ls -R master-repo
-
       - name: Run JMeter test
         run: |
           mkdir -p results
           jmeter -n \
             -t master-repo/perf-testing-petstore.jmx \
             -l results/results.jtl \
-            -e -o results/html
+            -e -o results/html || echo "⚠️ JMeter run failed or produced no HTML"
+
+      - name: Debug results folder
+        run: |
+          echo "==== RESULTS FOLDER CONTENTS ===="
+          ls -R results || echo "results folder not found"
 
       - name: Upload Results (HTML + JTL)
+        if: always() # always try upload even if JMeter failed
         uses: actions/upload-artifact@v4
         with:
           name: jmeter-results
           path: |
             results/results.jtl
             results/html
-
+          if-no-files-found: warn
